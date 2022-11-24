@@ -1,0 +1,59 @@
+- init:
+    run: rm -f recitation1
+    blocker: true
+
+- build:
+    run: g++ -Wall src/main.cpp src/team.cpp src/player.cpp -I include -o recitation1 -lm
+    exit: 0
+    points: 1
+    blocker: true
+
+- case1:
+    run: ./recitation1
+    script: 
+        - expect: '.*Who\s+is\s+the\s+best\s+player\?(\r\n)*Samuel\s+Etoo,\s+Number:\s+9\s+Team:\s+Barcelona(\r\n)*Choose\s+an\s+operation(\r\n)*A:\s+Add\s+player(\r\n)*R:\s+Remove\s+player(\r\n)*S:\s+Show\s+players(\r\n)*L:\s+List\s+teams(\r\n)*T:\s+Add\s+a\s+new\s+team(\r\n)*X:\s+Remove\s+team(\r\n)*E:\s+Exit(\r\n)*(\r\n)*Enter\s+a\s+choice\s+\{A,\s+R,\s+S,\s+L,\s+T,\s+X,\s+E\}:.*'
+        - send: "L"
+        - expect: '.*Team\s+0:\s+Liverpool\s+F.C.(\r\n)*Team\s+1:\s+S.S.\s+Lazio(\r\n)*Team\s+2:\s+A.C.\s+Milan(\r\n)*Team\s+3:\s+Barcelona(\r\n)*(\r\n)*(\r\n)*Who\s+is\s+the\s+best\s+player\?(\r\n)*Samuel\s+Etoo,\s+Number:\s+9\s+Team:\s+Barcelona(\r\n)*Choose\s+an\s+operation(\r\n)*A:\s+Add\s+player(\r\n)*R:\s+Remove\s+player(\r\n)*S:\s+Show\s+players(\r\n)*L:\s+List\s+teams(\r\n)*T:\s+Add\s+a\s+new\s+team(\r\n)*X:\s+Remove\s+team(\r\n)*E:\s+Exit(\r\n)*(\r\n)*Enter\s+a\s+choice\s+\{A,\s+R,\s+S,\s+L,\s+T,\s+X,\s+E\}:.*'
+        - send: "K"
+        - expect: '.*Error:\s+You\s+have\s+entered\s+an\s+invalid\s+choice(\r\n)*Please\s+try\s+again\s+\{A,\s+R,\s+S,\s+L,\s+T,\s+X,\s+E\}\s+:.*'
+        - send: "S"
+        - expect: '.*Team\s+0:\s+Liverpool\s+F.C.(\r\n)*Number\s+Name\s+Age\s+\#Goals\s+\#Assists\s+\#Matches(\r\n)*8\s+-\s+Steven\s+George\s+Gerrard\s+-\s+32\s+-\s+14\s+-\s+12\s+-\s+10(\r\n)*9\s+-\s+Fernando\s+Torres\s+-\s+37\s+-\s+13\s+-\s+11\s+-\s+10(\r\n)*7\s+-\s+Luis\s+Suares\s+-\s+33\s+-\s+12\s+-\s+12\s+-\s+12(\r\n)*Team\s+1:\s+S.S.\s+Lazio(\r\n)*Number\s+Name\s+Age\s+\#Goals\s+\#Assists\s+\#Matches(\r\n)*9\s+-\s+Hernan\s+Crespo\s+-\s+23\s+-\s+13\s+-\s+14\s+-\s+13(\r\n)*11\s+-\s+Miroslav\s+Klose\s+-\s+27\s+-\s+11\s+-\s+15\s+-\s+13(\r\n)*7\s+-\s+Simone\s+Inzaghi\s+-\s+22\s+-\s+10\s+-\s+16\s+-\s+15(\r\n)*Team\s+2:\s+A.C.\s+Milan(\r\n)*Number\s+Name\s+Age\s+\#Goals\s+\#Assists\s+\#Matches(\r\n)*11\s+-\s+Filippo\s+Inzaghi\s+-\s+37\s+-\s+12\s+-\s+11\s+-\s+15(\r\n)*21\s+-\s+Pablo\s+Maldini\s+-\s+37\s+-\s+13\s+-\s+9\s+-\s+9(\r\n)*33\s+-\s+Ricardo\s+Kaka\s+-\s+29\s+-\s+13\s+-\s+8\s+-\s+8(\r\n)*Team\s+3:\s+Barcelona(\r\n)*Number\s+Name\s+Age\s+\#Goals\s+\#Assists\s+\#Matches(\r\n)*10\s+-\s+Lionel\s+Messi\s+-\s+30\s+-\s+16\s+-\s+18\s+-\s+14(\r\n)*9\s+-\s+Samuel\s+Etoo\s+-\s+19\s+-\s+14\s+-\s+12\s+-\s+13(\r\n)*7\s+-\s+Andres\s+Iniesta\s+-\s+24\s+-\s+13\s+-\s+12\s+-\s+11(\r\n)*(\r\n)*(\r\n)*Who\s+is\s+the\s+best\s+player\?(\r\n)*Samuel\s+Etoo,\s+Number:\s+9\s+Team:\s+Barcelona(\r\n)*Choose\s+an\s+operation(\r\n)*A:\s+Add\s+player(\r\n)*R:\s+Remove\s+player(\r\n)*S:\s+Show\s+players(\r\n)*L:\s+List\s+teams(\r\n)*T:\s+Add\s+a\s+new\s+team(\r\n)*X:\s+Remove\s+team(\r\n)*E:\s+Exit(\r\n)*(\r\n)*Enter\s+a\s+choice\s+\{A,\s+R,\s+S,\s+L,\s+T,\s+X,\s+E\}:.*'
+        - send: "E"
+        - expect: '.*Are\s+you\s+sure\s+you\s+want\s+to\s+exit\s+the\s+program\?\s+\(Y\/N\):.*'
+        - send: "Y"
+    exit: 0
+    points: 1
+
+- case2:
+    run: ./recitation1
+    script: 
+        - expect: '.*Who\s+is\s+the\s+best\s+player\?(\r\n)*Samuel\s+Etoo,\s+Number:\s+9\s+Team:\s+Barcelona(\r\n)*Choose\s+an\s+operation(\r\n)*A:\s+Add\s+player(\r\n)*R:\s+Remove\s+player(\r\n)*S:\s+Show\s+players(\r\n)*L:\s+List\s+teams(\r\n)*T:\s+Add\s+a\s+new\s+team(\r\n)*X:\s+Remove\s+team(\r\n)*E:\s+Exit(\r\n)*(\r\n)*Enter\s+a\s+choice\s+\{A,\s+R,\s+S,\s+L,\s+T,\s+X,\s+E\}:.*'
+        - send: "R"
+        - expect: '.*Team\s+0:\s+Liverpool\s+F.C.(\r\n)*Team\s+1:\s+S.S.\s+Lazio(\r\n)*Team\s+2:\s+A.C.\s+Milan(\r\n)*Team\s+3:\s+Barcelona(\r\n)*From\s+which\s+team\?\(0,\s+1,\s+2...\):.*'
+        - send: "0"
+        - expect: '.*Number\s+Name\s+Age\s+#Goals\s+#Assists\s+#Matches(\r\n)*8\s+-\s+Steven\s+George\s+Gerrard\s+-\s+32\s+-\s+14\s+-\s+12\s+-\s+10(\r\n)*9\s+-\s+Fernando\s+Torres\s+-\s+37\s+-\s+13\s+-\s+11\s+-\s+10(\r\n)*7\s+-\s+Luis\s+Suares\s+-\s+33\s+-\s+12\s+-\s+12\s+-\s+12(\r\n)*Remove\s+which\s+player\?\(0,\s+1,\s+2...\):.*'
+        - send: "9"
+        - expect: '.*Who\s+is\s+the\s+best\s+player\?(\r\n)*Samuel\s+Etoo,\s+Number:\s+9\s+Team:\s+Barcelona(\r\n)*Choose\s+an\s+operation(\r\n)*A:\s+Add\s+player(\r\n)*R:\s+Remove\s+player(\r\n)*S:\s+Show\s+players(\r\n)*L:\s+List\s+teams(\r\n)*T:\s+Add\s+a\s+new\s+team(\r\n)*X:\s+Remove\s+team(\r\n)*E:\s+Exit(\r\n)*(\r\n)*Enter\s+a\s+choice\s+\{A,\s+R,\s+S,\s+L,\s+T,\s+X,\s+E\}:.*'
+        - send: "S"
+        - expect: '.*Team\s+0:\s+Liverpool\s+F.C.(\r\n)*Number\s+Name\s+Age\s+\#Goals\s+\#Assists\s+\#Matches(\r\n)*8\s+-\s+Steven\s+George\s+Gerrard\s+-\s+32\s+-\s+14\s+-\s+12\s+-\s+10(\r\n)*7\s+-\s+Luis\s+Suares\s+-\s+33\s+-\s+12\s+-\s+12\s+-\s+12(\r\n)*Team\s+1:\s+S.S.\s+Lazio(\r\n)*Number\s+Name\s+Age\s+\#Goals\s+\#Assists\s+\#Matches(\r\n)*9\s+-\s+Hernan\s+Crespo\s+-\s+23\s+-\s+13\s+-\s+14\s+-\s+13(\r\n)*11\s+-\s+Miroslav\s+Klose\s+-\s+27\s+-\s+11\s+-\s+15\s+-\s+13(\r\n)*7\s+-\s+Simone\s+Inzaghi\s+-\s+22\s+-\s+10\s+-\s+16\s+-\s+15(\r\n)*Team\s+2:\s+A.C.\s+Milan(\r\n)*Number\s+Name\s+Age\s+\#Goals\s+\#Assists\s+\#Matches(\r\n)*11\s+-\s+Filippo\s+Inzaghi\s+-\s+37\s+-\s+12\s+-\s+11\s+-\s+15(\r\n)*21\s+-\s+Pablo\s+Maldini\s+-\s+37\s+-\s+13\s+-\s+9\s+-\s+9(\r\n)*33\s+-\s+Ricardo\s+Kaka\s+-\s+29\s+-\s+13\s+-\s+8\s+-\s+8(\r\n)*Team\s+3:\s+Barcelona(\r\n)*Number\s+Name\s+Age\s+\#Goals\s+\#Assists\s+\#Matches(\r\n)*10\s+-\s+Lionel\s+Messi\s+-\s+30\s+-\s+16\s+-\s+18\s+-\s+14(\r\n)*9\s+-\s+Samuel\s+Etoo\s+-\s+19\s+-\s+14\s+-\s+12\s+-\s+13(\r\n)*7\s+-\s+Andres\s+Iniesta\s+-\s+24\s+-\s+13\s+-\s+12\s+-\s+11(\r\n)*(\r\n)*(\r\n)*Who\s+is\s+the\s+best\s+player\?(\r\n)*Samuel\s+Etoo,\s+Number:\s+9\s+Team:\s+Barcelona(\r\n)*Choose\s+an\s+operation(\r\n)*A:\s+Add\s+player(\r\n)*R:\s+Remove\s+player(\r\n)*S:\s+Show\s+players(\r\n)*L:\s+List\s+teams(\r\n)*T:\s+Add\s+a\s+new\s+team(\r\n)*X:\s+Remove\s+team(\r\n)*E:\s+Exit(\r\n)*(\r\n)*Enter\s+a\s+choice\s+\{A,\s+R,\s+S,\s+L,\s+T,\s+X,\s+E\}:.*'
+        - send: "E"
+        - expect: '.*Are\s+you\s+sure\s+you\s+want\s+to\s+exit\s+the\s+program\?\s+\(Y\/N\):.*'
+        - send: "Y"
+    exit: 0
+    points: 1
+
+- case3:
+    run: ./recitation1
+    script: 
+        - expect: '.*Who\s+is\s+the\s+best\s+player\?(\r\n)*Samuel\s+Etoo,\s+Number:\s+9\s+Team:\s+Barcelona(\r\n)*Choose\s+an\s+operation(\r\n)*A:\s+Add\s+player(\r\n)*R:\s+Remove\s+player(\r\n)*S:\s+Show\s+players(\r\n)*L:\s+List\s+teams(\r\n)*T:\s+Add\s+a\s+new\s+team(\r\n)*X:\s+Remove\s+team(\r\n)*E:\s+Exit(\r\n)*(\r\n)*Enter\s+a\s+choice\s+\{A,\s+R,\s+S,\s+L,\s+T,\s+X,\s+E\}:.*'
+        - send: "X"
+        - expect: '.*Team\s+0:\s+Liverpool\s+F.C.(\r\n)*Team\s+1:\s+S.S.\s+Lazio(\r\n)*Team\s+2:\s+A.C.\s+Milan(\r\n)*Team\s+3:\s+Barcelona(\r\n)*Enter\s+team\s+number\s+to\s+remove:.*'
+        - send: "0"
+        - expect: '.*Who\s+is\s+the\s+best\s+player\?(\r\n)*Samuel\s+Etoo,\s+Number:\s+9\s+Team:\s+Barcelona(\r\n)*Choose\s+an\s+operation(\r\n)*A:\s+Add\s+player(\r\n)*R:\s+Remove\s+player(\r\n)*S:\s+Show\s+players(\r\n)*L:\s+List\s+teams(\r\n)*T:\s+Add\s+a\s+new\s+team(\r\n)*X:\s+Remove\s+team(\r\n)*E:\s+Exit(\r\n)*(\r\n)*Enter\s+a\s+choice\s+\{A,\s+R,\s+S,\s+L,\s+T,\s+X,\s+E\}:.*'
+        - send: "L"
+        - expect: '.*Team\s+1:\s+S.S.\s+Lazio(\r\n)*Team\s+2:\s+A.C.\s+Milan(\r\n)*Team\s+3:\s+Barcelona(\r\n)*Who\s+is\s+the\s+best\s+player\?(\r\n)*Samuel\s+Etoo,\s+Number:\s+9\s+Team:\s+Barcelona\s+(\r\n)*Choose\s+an\s+operation(\r\n)*A:\s+Add\s+player(\r\n)*R:\s+Remove\s+player(\r\n)*S:\s+Show\s+players(\r\n)*L:\s+List\s+teams(\r\n)*T:\s+Add\s+a\s+new\s+team(\r\n)*X:\s+Remove\s+team(\r\n)*E:\s+Exit(\r\n)*Enter\s+a\s+choice\s+\{A,\s+R,\s+S,\s+L,\s+T,\s+X,\s+E\}:.*'
+        - send: "E"
+        - expect: '.*Are\s+you\s+sure\s+you\s+want\s+to\s+exit\s+the\s+program\?\s+\(Y\/N\):.*'
+        - send: "Y"
+    exit: 0
+    points: 1
