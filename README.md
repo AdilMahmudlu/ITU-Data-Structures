@@ -1,2 +1,2 @@
 # ITU-Data-Structures
-ITU BLG223E Data Structures Assignments and HWs
+ITU BLG223E Data Structures Assignment and Recitation codes
